@@ -1,274 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" class="dark-theme">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#0a1929">
     <title>TechHub – ATI Vavuniya Competitions 2025</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- 1. CSS RESET FOR CROSS-BROWSER COMPATIBILITY --- */
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary: #fbbf24;      /* Yellow */
+            --primary-light: #fcd34d; /* Light yellow */
+            --secondary: #60a5fa;    /* Light blue */
+            --accent: #34d399;       /* Light green */
+            --highlight: #f97316;    /* Light orange */
+            --light-bg: #0f172a;     /* Dark blue background */
+            --light-card: #1e293b;   /* Card background */
+            --light-gray: #334155;   /* Dark gray for sections */
+            --text-dark: #f8fafc;    /* Light text */
+            --text-medium: #e2e8f0;  /* Medium light text */
+            --text-light: #cbd5e1;   /* Light text */
+            --border: #475569;       /* Border color */
+            --shadow: rgba(0, 0, 0, 0.25);
+            --shadow-hover: rgba(0, 0, 0, 0.35);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-        }
-
-        html {
-            font-size: 16px;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
+            font-family: 'Segoe UI', 'Inter', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-            background-color: #0a1929;
-            color: #e6f1ff;
-            transition: background-color 0.3s ease;
         }
 
-        /* Fallback for older browsers */
-        .no-js body {
-            background: #0a1929;
-        }
-
-        /* --- 2. DARK THEME VARIABLES (with fallbacks) --- */
-        :root {
-            --bg-primary: #0a1929;
-            --bg-secondary: #112240;
-            --bg-tertiary: #1a365d;
-            --accent-primary: #4ade80;
-            --accent-secondary: #22d3ee;
-            --accent-light: #a7f3d0;
-            --text-primary: #e6f1ff;
-            --text-secondary: #a8b2d1;
-            --text-dim: #8892b0;
-            --card-bg: rgba(17, 34, 64, 0.7);
-            --card-border: rgba(74, 222, 128, 0.2);
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --shadow-accent: rgba(74, 222, 128, 0.2);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --gradient-primary: linear-gradient(135deg, #4ade80, #22d3ee);
-            --gradient-secondary: linear-gradient(135deg, #22d3ee, #818cf8);
-        }
-
-        /* For browsers that don't support CSS variables */
-        .no-cssvariables {
-            background-color: #0a1929;
-            color: #e6f1ff;
-        }
-
-        /* --- 3. ANIMATIONS (with vendor prefixes) --- */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @-webkit-keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @-moz-keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-                -webkit-transform: translateY(30px);
-                -moz-transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                -webkit-transform: translateY(0);
-                -moz-transform: translateY(0);
-            }
-        }
-
-        @-webkit-keyframes slideUp {
-            from {
-                opacity: 0;
-                -webkit-transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                -webkit-transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-                -webkit-transform: translateY(0);
-                -moz-transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-                -webkit-transform: translateY(-15px);
-                -moz-transform: translateY(-15px);
-            }
-        }
-
-        @-webkit-keyframes float {
-            0%, 100% {
-                -webkit-transform: translateY(0);
-            }
-            50% {
-                -webkit-transform: translateY(-15px);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 12px rgba(74, 222, 128, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-            }
-        }
-
-        @-webkit-keyframes pulse {
-            0% {
-                -webkit-box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
-            }
-            70% {
-                -webkit-box-shadow: 0 0 0 12px rgba(74, 222, 128, 0);
-            }
-            100% {
-                -webkit-box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        @-webkit-keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        /* --- 4. CORE LAYOUT & TYPOGRAPHY --- */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h2 {
-            font-size: 2.8rem;
-            color: var(--accent-light);
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            color: var(--accent-primary);
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            transition: var(--transition);
-            -webkit-transition: var(--transition);
-            -moz-transition: var(--transition);
-        }
-
-        a:hover, a:focus {
-            color: var(--accent-light);
-            outline: none;
-        }
-
-        /* --- 5. NAVIGATION (Fixed for all browsers) --- */
+        /* --- 2. NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            z-index: 1000;
-            background-color: rgba(10, 25, 41, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(74, 222, 128, 0.1);
-            box-shadow: 0 4px 20px var(--shadow-color);
-            padding: 1rem 0;
-            transition: var(--transition);
-        }
-
-        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 1.2rem 5%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
+        .round-logo {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-primary);
-            font-weight: bold;
-            font-size: 1.5rem;
-            animation: pulse 2s infinite;
-            -webkit-animation: pulse 2s infinite;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+            transition: var(--transition);
         }
 
-        .logo-text {
-            font-size: 1.8rem;
+        .logo-container:hover .round-logo {
+            transform: rotate(10deg);
+            box-shadow: 0 0 18px rgba(251, 191, 36, 0.6);
+        }
+
+        .logo {
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--accent-primary);
+            color: var(--primary); /* TechHub in yellow */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
         }
 
         .nav-links {
@@ -278,10 +92,13 @@
         }
 
         .nav-links a {
-            color: var(--text-primary);
-            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 600;
+            transition: var(--transition);
             position: relative;
-            padding: 0.5rem 0;
+            padding: 8px 0;
+            font-size: 0.95rem;
         }
 
         .nav-links a::after {
@@ -291,155 +108,190 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-primary);
+            background: linear-gradient(to right, var(--primary), var(--accent));
             transition: width 0.3s ease;
-            -webkit-transition: width 0.3s ease;
-            -moz-transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        .nav-links a:hover::after {
             width: 100%;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent-primary);
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .mobile-menu-btn {
+        .burger {
             display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
             background: none;
             border: none;
-            color: var(--accent-primary);
-            font-size: 1.8rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            transition: var(--transition);
         }
 
-        .mobile-menu-btn:hover {
-            background-color: rgba(74, 222, 128, 0.1);
-        }
-
-        /* --- 6. HERO SECTION --- */
+        /* --- 3. HERO SECTION --- */
         .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
             position: relative;
-            padding-top: 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             overflow: hidden;
         }
 
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .hero-bg::before {
+        /* Subtle background pattern */
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(74, 222, 128, 0.05) 0%, transparent 50%);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(96, 165, 250, 0.05) 0%, transparent 20%);
+            z-index: 0;
+        }
+
+        /* Background floating shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: 0;
+            filter: blur(40px);
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary); /* Yellow */
+            top: 10%;
+            left: 5%;
+            animation: float 20s infinite alternate;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--secondary); /* Light blue */
+            bottom: 15%;
+            right: 10%;
+            animation: float 25s infinite alternate-reverse;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--accent); /* Light green */
+            top: 60%;
+            left: 15%;
+            animation: float 18s infinite alternate;
+        }
+
+        .shape-4 {
+            width: 180px;
+            height: 180px;
+            background: var(--highlight); /* Light orange */
+            top: 20%;
+            right: 15%;
+            animation: float 22s infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, -30px) rotate(10deg); }
         }
 
         .hero-content {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            animation: slideUp 1s ease-out;
-            -webkit-animation: slideUp 1s ease-out;
+            z-index: 10;
+            max-width: 900px;
+            position: relative;
         }
 
-        .date-badge {
+        .badge {
             display: inline-block;
-            background-color: rgba(74, 222, 128, 0.1);
-            color: var(--accent-primary);
-            border: 1px solid rgba(74, 222, 128, 0.3);
-            padding: 0.7rem 1.8rem;
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 0.6rem 1.8rem;
             border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            font-size: 1rem;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            animation: fadeIn 1s ease-out 0.3s both;
-            -webkit-animation: fadeIn 1s ease-out 0.3s both;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
-        .cta-button {
+        .cta-btn {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--gradient-primary);
-            color: var(--bg-primary);
+            padding: 1.1rem 3.2rem;
+            background: linear-gradient(90deg, var(--primary), var(--highlight));
+            color: #0f172a; /* Dark text on light button */
+            text-decoration: none;
+            border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 8px;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
             z-index: 1;
             border: none;
             cursor: pointer;
-            transition: var(--transition);
-            animation: fadeIn 1s ease-out 0.6s both;
-            -webkit-animation: fadeIn 1s ease-out 0.6s both;
-            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
         }
 
-        .cta-button::before {
+        .cta-btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
-            -webkit-transition: left 0.7s ease;
-            -moz-transition: left 0.7s ease;
+            background: linear-gradient(90deg, var(--highlight), var(--primary));
+            transition: left 0.5s ease;
+            z-index: -1;
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .cta-btn:hover::before {
+            left: 0;
         }
 
-        .cta-button:hover {
+        .cta-btn:hover {
             transform: translateY(-5px);
-            -webkit-transform: translateY(-5px);
-            -moz-transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(74, 222, 128, 0.4);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.5);
         }
 
-        .cta-button:active {
-            transform: translateY(-2px);
-            -webkit-transform: translateY(-2px);
-        }
-
-        /* --- 7. COMPETITIONS SECTION --- */
+        /* --- 4. COMPETITIONS GRID --- */
         .competitions {
-            padding: 6rem 0;
+            padding: 6rem 5%;
             position: relative;
+            background: var(--light-gray);
         }
 
         .section-header {
@@ -447,42 +299,39 @@
             margin-bottom: 4rem;
         }
 
-        .section-header p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.2rem;
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
-        .cards-grid {
+        .section-header p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
+            background: var(--light-card);
+            border: 1px solid var(--border);
+            padding: 2.2rem 1.8rem;
+            border-radius: 16px;
+            text-align: center;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             height: 100%;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.8s ease-out;
-            -webkit-animation: fadeIn 0.8s ease-out;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            -webkit-transform: translateY(-10px);
-            -moz-transform: translateY(-10px);
-            border-color: rgba(74, 222, 128, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px rgba(74, 222, 128, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
         }
 
         .card::before {
@@ -492,669 +341,369 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--gradient-primary);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .card:hover {
+            background: #2d3748;
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+            box-shadow: 0 15px 35px var(--shadow-hover);
         }
 
         .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
             width: 70px;
             height: 70px;
+            line-height: 70px;
             border-radius: 50%;
-            background: rgba(74, 222, 128, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            color: var(--accent-primary);
-            animation: float 3s ease-in-out infinite;
-            -webkit-animation: float 3s ease-in-out infinite;
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--primary);
+            margin-left: auto;
+            margin-right: auto;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-icon {
+            background: rgba(251, 191, 36, 0.25);
+            transform: scale(1.1);
         }
 
         .card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
         .card p {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
             flex-grow: 1;
-            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
-        .card-button {
+        .card-btn {
             display: inline-block;
+            margin-top: 1rem;
             padding: 0.9rem 1.8rem;
-            background-color: transparent;
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
             font-weight: 600;
-            border-radius: 6px;
-            text-align: center;
+            font-size: 0.95rem;
             transition: var(--transition);
-            -webkit-transition: var(--transition);
-            -moz-transition: var(--transition);
         }
 
-        .card-button:hover {
-            background-color: rgba(74, 222, 128, 0.1);
+        .card-btn:hover {
+            background: var(--primary);
+            color: #0f172a;
             transform: translateY(-3px);
-            -webkit-transform: translateY(-3px);
-            -moz-transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(74, 222, 128, 0.2);
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
         }
 
-        /* --- 8. FOOTER --- */
+        /* --- 5. FOOTER --- */
         footer {
-            background-color: var(--bg-tertiary);
-            padding: 4rem 0 2rem;
             text-align: center;
-            border-top: 1px solid rgba(74, 222, 128, 0.1);
+            padding: 4rem 1rem;
+            background: var(--light-card);
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-medium);
         }
 
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 2.2rem;
-            font-weight: 800;
+        footer h3 {
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
+            background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
-            background-clip: text;
             color: transparent;
-            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         .footer-highlight {
-            color: var(--accent-primary);
+            color: var(--primary);
             font-weight: 700;
-            font-size: 1.2rem;
-            margin: 1.5rem 0;
-            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .footer-details {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
         }
 
         .copyright {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-dim);
-            font-size: 0.95rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
 
-        /* --- 9. RESPONSIVE DESIGN --- */
-        @media screen and (max-width: 1024px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2.4rem;
-            }
-            
-            .cards-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
+        .social-icons {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
         }
 
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: #0f172a;
+            transform: translateY(-3px);
+        }
+
+        /* --- 6. MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
             .nav-links {
                 position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-secondary);
+                right: 0;
+                top: 0;
+                height: 100vh;
+                background: #1e293b;
                 flex-direction: column;
-                padding: 2rem;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease;
-                -webkit-transition: clip-path 0.4s ease;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                width: 280px;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 6rem 2rem 2rem;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                border-left: 1px solid var(--border);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
                 z-index: 999;
             }
-            
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            
+
             .nav-links li {
                 width: 100%;
-                text-align: center;
             }
-            
+
             .nav-links a {
                 display: block;
                 padding: 1rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: 1px solid var(--border);
+                width: 100%;
             }
-            
-            .nav-links a:last-child {
-                border-bottom: none;
+
+            .nav-active {
+                transform: translateX(0%);
             }
-            
-            h1 {
+
+            .burger {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+            }
+
+            .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
+
             .hero p {
                 font-size: 1.1rem;
+                padding: 0 1rem;
             }
-            
-            .cards-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .cta-button {
-                padding: 1rem 2.5rem;
-                font-size: 1rem;
-            }
-        }
 
-        @media screen and (max-width: 480px) {
-            h1 {
+            .section-header h2 {
                 font-size: 2.2rem;
             }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .card {
-                padding: 2rem 1.5rem;
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
             }
             
-            .date-badge {
-                font-size: 0.9rem;
-                padding: 0.6rem 1.5rem;
-            }
-            
-            .container {
-                padding: 0 15px;
+            .shape-1, .shape-2, .shape-3, .shape-4 {
+                opacity: 0.05;
             }
         }
 
-        /* --- 10. CROSS-BROWSER FIXES --- */
-        /* For Internet Explorer 10+ */
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            .card {
-                background-color: #112240;
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .gradient-text {
-                color: #4ade80;
-                background: none;
-            }
-            
-            .hero-bg::before {
-                display: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* For older Safari and iOS */
-        @supports (-webkit-touch-callout: none) {
-            .hero {
-                min-height: -webkit-fill-available;
-            }
+        .hero-content, .card, .section-header {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* For Firefox */
-        @-moz-document url-prefix() {
-            nav {
-                background-color: rgba(10, 25, 41, 0.98);
-            }
-        }
-
-        /* For Opera Mini - simplified styles */
-        @media all and (-webkit-min-device-pixel-ratio:0) and (max-width: 720px) {
-            .card {
-                animation: none;
-                -webkit-animation: none;
-            }
-            
-            .hero-bg::before {
-                opacity: 0.1;
-            }
-        }
-
-        /* --- 11. ACCESSIBILITY & PERFORMANCE --- */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        .focus-visible:focus {
-            outline: 2px solid var(--accent-primary);
-            outline-offset: 4px;
-        }
-
-        /* Reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            nav, .cta-button, .mobile-menu-btn {
-                display: none;
-            }
-            
-            body {
-                background-color: white;
-                color: black;
-            }
-            
-            .card {
-                break-inside: avoid;
-                border: 1px solid #ccc;
-            }
-        }
-
-        /* --- 12. LOADING ANIMATIONS --- */
-        .loading-shimmer {
-            background: linear-gradient(90deg, 
-                var(--bg-secondary) 25%, 
-                var(--bg-tertiary) 50%, 
-                var(--bg-secondary) 75%);
-            background-size: 1000px 100%;
-            animation: shimmer 2s infinite linear;
-            -webkit-animation: shimmer 2s infinite linear;
-        }
-
-        /* --- 13. PARTICLE BACKGROUND --- */
-        .particles-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background-color: rgba(74, 222, 128, 0.15);
-            border-radius: 50%;
-            pointer-events: none;
-        }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- Skip to content link for accessibility -->
-    <a href="#main-content" class="sr-only focus-visible">Skip to main content</a>
 
-    <!-- Navigation -->
-    <nav role="navigation" aria-label="Main Navigation">
-        <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-icon" aria-hidden="true">TH</div>
-                <div class="logo-text">TechHub ATI</div>
-            </div>
-            
-            <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-links" role="menubar">
-                <li role="none"><a href="#home" class="active" role="menuitem">Home</a></li>
-                <li role="none"><a href="#competitions" role="menuitem">Competitions</a></li>
-                <li role="none"><a href="#details" role="menuitem">Details</a></li>
-            </ul>
+    <nav>
+        <div class="logo-container">
+            <img src="logo.png" class="round-logo" alt="TechHub ATI Logo">
+            <div class="logo">TechHub ATI</div>
         </div>
+       
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#competitions">Competitions</a></li>
+            <li><a href="#details">Details</a></li>
+        </ul>
+        <button class="burger" onclick="toggleMenu()">☰</button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home" role="banner">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="particles-container" id="particles-container" aria-hidden="true"></div>
-        
-        <div class="container hero-content">
-            <div class="date-badge" aria-label="Competition closing date">
-                <i class="fas fa-calendar-alt" aria-hidden="true"></i> Closing Date: 24 December 2025
-            </div>
-            
-            <h1>TechHub – ATI Vavuniya<br>Competitions 2025</h1>
-            
-            <p>Showcase your talent in our prestigious tech competitions! Free registration with valuable certificates and industry recognition for all winners.</p>
-            
-            <a href="#competitions" class="cta-button" role="button" aria-label="Register for competitions">
-                Register Now <i class="fas fa-fire" aria-hidden="true"></i>
-            </a>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="badge">📅 Closing Date: 24 December 2025</div>
+            <h1>TechHub – ATI Vavuniya <br><span>Competitions 2025</span></h1>
+            <p>Show your talent and take part in our exciting competitions! Free Registration. Winners receive valuable certificates and recognition.</p>
+            <a href="#competitions" class="cta-btn">Register Now 🔥</a>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="main-content" role="main">
-        <!-- Competitions Section -->
-        <section class="competitions" id="competitions">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Select Your Competition</h2>
-                    <p>Register for one or more categories to showcase your skills. All participants receive certificates, with special recognition for winners.</p>
-                </div>
-                
-                <div class="cards-grid">
-                    <!-- Quiz Competition Card -->
-                    <div class="card" role="article">
-                        <div class="card-icon" aria-hidden="true">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Quiz Competition</h3>
-                        <p>Test your knowledge and speed in this ultimate quiz challenge. Perfect for those who love trivia and quick thinking.</p>
-                        <a href="https://forms.gle/1cYgyJqezQkBJJjL9" target="_blank" class="card-button" aria-label="Register for Quiz Competition">
-                            Register <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    
-                    <!-- Web Development Card -->
-                    <div class="card" role="article">
-                        <div class="card-icon" aria-hidden="true">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>Build stunning websites and showcase your coding creativity. Frontend, backend, or full stack - show us what you've got!</p>
-                        <a href="https://forms.gle/Kgvivtamjo8wA9g66" target="_blank" class="card-button" aria-label="Register for Web Development Competition">
-                            Register <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    
-                    <!-- Windows App Dev Card -->
-                    <div class="card" role="article">
-                        <div class="card-icon" aria-hidden="true">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h3>Windows App Dev</h3>
-                        <p>Create powerful desktop applications and solve real-world problems. Ideal for software engineering enthusiasts.</p>
-                        <a href="https://forms.gle/6JC7SHBJE3LpfKCc8" target="_blank" class="card-button" aria-label="Register for Windows App Development Competition">
-                            Register <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    
-                    <!-- Debugging Card -->
-                    <div class="card" role="article">
-                        <div class="card-icon" aria-hidden="true">
-                            <i class="fas fa-bug"></i>
-                        </div>
-                        <h3>Debugging Challenge</h3>
-                        <p>Find the bugs, fix the code, and prove your programming logic. A true test of your problem-solving skills.</p>
-                        <a href="https://forms.gle/ZaoCJnzsY411kf6v8" target="_blank" class="card-button" aria-label="Register for Debugging Competition">
-                            Register <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    
-                    <!-- Output Quest Card -->
-                    <div class="card" role="article">
-                        <div class="card-icon" aria-hidden="true">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <h3>Output Quest</h3>
-                        <p>Predict the output of complex code snippets accurately. Challenge your understanding of programming concepts.</p>
-                        <a href="https://forms.gle/3X3oN7JxNC37dV5K7" target="_blank" class="card-button" aria-label="Register for Output Quest Competition">
-                            Register <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+    <section class="competitions" id="competitions">
+        <div class="section-header">
+            <h2>Select Your Category</h2>
+            <p>Click below to register via Google Forms</p>
+        </div>
 
-    <!-- Footer -->
-    <footer id="details" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">TechHub ATI</div>
-                
-                <h3 aria-label="Organizer information">🔰 Organized by TechHub – ATI Vavuniya</h3>
-                
-                <p class="footer-highlight" aria-label="Competition highlight">
-                    <i class="fas fa-trophy" aria-hidden="true"></i> A prestigious opportunity to showcase your skills!
-                </p>
-                
-                <p>Participate in one or more competitions. Certificates will be awarded to all participants, with special recognition and prizes for winners.</p>
-                
-                <div class="copyright">
-                    <p>&copy; 2025 TechHub ATI Vavuniya. All Rights Reserved.</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Designed for cross-browser compatibility</p>
-                </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h3>Quiz Competition</h3>
+                <p>Test your knowledge and speed in this ultimate quiz challenge. Perfect for those who love trivia and quick thinking.</p>
+                <a href="https://forms.gle/1cYgyJqezQkBJJjL9" target="_blank" class="card-btn">Register for Quiz</a>
             </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>Build stunning websites and showcase your coding creativity. Frontend, backend, or full stack - show us what you've got!</p>
+                <a href="https://forms.gle/Kgvivtamjo8wA9g66" target="_blank" class="card-btn">Register for Web Dev</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🖥️</div>
+                <h3>Windows App Dev</h3>
+                <p>Create powerful desktop applications and solve real-world problems. Ideal for software engineering enthusiasts.</p>
+                <a href="https://forms.gle/6JC7SHBJE3LpfKCc8" target="_blank" class="card-btn">Register for App Dev</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🐞</div>
+                <h3>Debugging</h3>
+                <p>Find the bugs, fix the code, and prove your programming logic. A true test of your problem-solving skills.</p>
+                <a href="https://forms.gle/ZaoCJnzsY411kf6v8" target="_blank" class="card-btn">Register for Debugging</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Output Quest</h3>
+                <p>Predict the output of complex code snippets accurately. Challenge your understanding of programming concepts.</p>
+                <a href="https://forms.gle/3X3oN7JxNC37dV5K7" target="_blank" class="card-btn">Register for Quest</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="details">
+        <h3>🔰 Organized by TechHub – ATI Vavuniya</h3>
+        <div class="footer-details">
+            <p>🏆 <span class="footer-highlight">A great opportunity to showcase your skills!</span></p>
+            <p style="margin-top: 10px;">Participate in one or more competitions. Certificates will be awarded to all participants, with special recognition for winners. Enhance your portfolio and gain valuable experience.</p>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#" class="social-icon">📧</a>
+            <a href="#" class="social-icon">📱</a>
+            <a href="#" class="social-icon">🌐</a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 TechHub ATI Vavuniya. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript with cross-browser compatibility -->
     <script>
-        // Feature detection for modern JavaScript
-        'use strict';
-        
-        // Check if browser supports modern features
-        const supportsCSSVariables = window.CSS && window.CSS.supports && window.CSS.supports('--test', 'test');
-        
-        // Add classes for older browsers
-        if (!supportsCSSVariables) {
-            document.documentElement.className += ' no-cssvariables';
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('nav-active');
+            
+            // Toggle burger icon animation
+            const burger = document.querySelector('.burger');
+            if (nav.classList.contains('nav-active')) {
+                burger.innerHTML = '✕';
+                burger.style.fontSize = '1.8rem';
+            } else {
+                burger.innerHTML = '☰';
+                burger.style.fontSize = '1.5rem';
+            }
         }
         
-        // Check if JavaScript is enabled
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-        
-        // Mobile navigation toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            const navItems = document.querySelectorAll('.nav-links a');
-            
-            // Toggle mobile menu
-            function toggleMobileMenu() {
-                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-                navLinks.classList.toggle('active');
-                
-                // Change icon
-                const icon = mobileMenuBtn.querySelector('i');
-                if (navLinks.classList.contains('active')) {
-                    icon.className = 'fas fa-times';
-                } else {
-                    icon.className = 'fas fa-bars';
-                }
-            }
-            
-            // Close mobile menu when clicking a link
-            function closeMobileMenu() {
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.className = 'fas fa-bars';
-            }
-            
-            // Event listeners
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-                mobileMenuBtn.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleMobileMenu();
-                    }
-                });
-            }
-            
-            // Close menu when clicking on a link
-            navItems.forEach(item => {
-                item.addEventListener('click', closeMobileMenu);
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.nav-container') && navLinks.classList.contains('active')) {
-                    closeMobileMenu();
-                }
-            });
-            
-            // Initialize particles
-            initParticles();
-            
-            // Add scroll effect to navbar
-            window.addEventListener('scroll', function() {
-                const nav = document.querySelector('nav');
-                if (window.scrollY > 100) {
-                    nav.style.backgroundColor = 'rgba(10, 25, 41, 0.98)';
-                    nav.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.4)';
-                } else {
-                    nav.style.backgroundColor = 'rgba(10, 25, 41, 0.95)';
-                    nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-                }
-                
-                // Update active nav link based on scroll position
-                updateActiveNavLink();
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        
-                        // Update active nav link
-                        navItems.forEach(item => item.classList.remove('active'));
-                        this.classList.add('active');
-                        
-                        // Smooth scroll to target
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Card hover effect enhancement
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-                
-                // Keyboard navigation for cards
-                card.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        const link = this.querySelector('a');
-                        if (link) {
-                            e.preventDefault();
-                            link.click();
-                        }
-                    }
-                });
-            });
-            
-            // Add loading animation for cards
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('nav-links');
+                nav.classList.remove('nav-active');
+                const burger = document.querySelector('.burger');
+                burger.innerHTML = '☰';
+                burger.style.fontSize = '1.5rem';
             });
         });
         
-        // Function to create particle background
-        function initParticles() {
-            const container = document.getElementById('particles-container');
-            if (!container) return;
-            
-            // Create particles based on screen size
-            const particleCount = window.innerWidth < 768 ? 30 : 60;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random properties
-                const size = Math.random() * 5 + 2;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const opacity = Math.random() * 0.3 + 0.1;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                
-                // Apply styles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.opacity = opacity;
-                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-                
-                // Random color between green and cyan
-                const colorChoice = Math.random() > 0.5 ? '74, 222, 128' : '34, 211, 238';
-                particle.style.backgroundColor = `rgba(${colorChoice}, ${opacity})`;
-                
-                container.appendChild(particle);
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(15, 23, 42, 0.98)';
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+                nav.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
             }
-        }
+        });
         
-        // Update active navigation link based on scroll position
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('section, footer');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let currentSection = '';
-            const scrollPosition = window.scrollY + 100;
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
+        // Add hover effect to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'scale(1.1)';
             });
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'scale(1)';
             });
-        }
-        
-        // Fallback for browsers that don't support smooth scrolling
-        if (!('scrollBehavior' in document.documentElement.style)) {
-            // Polyfill could be added here if needed
-        }
-        
-        // Handle older browsers (IE) with feature detection
-        if (!window.addEventListener) {
-            // Fallback for very old browsers
-            window.attachEvent('onload', function() {
-                alert('Please consider updating your browser for the best experience.');
-            });
-        }
+        });
     </script>
+
 </body>
 </html>
